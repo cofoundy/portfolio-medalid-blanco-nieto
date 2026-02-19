@@ -87,6 +87,12 @@ h1, h2, h3, h4, h5, h6 {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes heroScaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.hero-photo { animation: heroScaleIn 0.8s var(--ease-bounce) 0.1s both; }
 .hero-title { animation: heroFadeUp 0.7s var(--ease-out) 0.2s both; }
 .hero-subtitle { animation: heroFadeUp 0.7s var(--ease-out) 0.35s both; }
 .hero-tagline { animation: heroFadeUp 0.7s var(--ease-out) 0.5s both; }
