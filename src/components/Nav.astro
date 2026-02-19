@@ -1,0 +1,44 @@
+---
+import { siteConfig } from "../config";
+---
+
+<nav id="floating-nav" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 opacity-0 pointer-events-none">
+  <div class="flex items-center gap-1 px-2 py-2 rounded-full border border-[var(--color-primary-light)]/30 bg-[var(--color-surface-light)]/90 backdrop-blur-md shadow-lg shadow-[var(--color-primary-dark)]/5">
+    <a
+      href="#"
+      class="px-4 py-1.5 text-sm font-medium text-[var(--color-primary-dark)] hover:text-[var(--color-accent)] transition-colors"
+    >
+      MBN
+    </a>
+    {siteConfig.nav.map((item) => (
+      <a
+        href={item.href}
+        class="px-3 py-1.5 text-sm text-[var(--color-primary)] hover:text-[var(--color-accent)] transition-colors rounded-full hover:bg-[var(--color-surface)]/60"
+      >
+        {item.label}
+      </a>
+    ))}
+    <a
+      href={`mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(siteConfig.hero.cta.subject)}`}
+      class="ml-1 px-4 py-1.5 text-sm font-medium text-[var(--color-surface-light)] bg-[var(--color-accent)] rounded-full hover:opacity-90 transition-opacity"
+    >
+      Contact
+    </a>
+  </div>
+</nav>
+
+<script>
+  const nav = document.getElementById('floating-nav');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > 400 && !nav?.classList.contains('header-visible')) {
+      nav?.classList.add('header-visible');
+      nav?.classList.remove('opacity-0', 'pointer-events-none');
+    } else if (y <= 400) {
+      nav?.classList.remove('header-visible');
+      nav?.classList.add('opacity-0', 'pointer-events-none');
+    }
+    lastScroll = y;
+  });
+</script>

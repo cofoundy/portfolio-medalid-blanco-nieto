@@ -1,0 +1,49 @@
+---
+import { siteConfig } from "../config";
+const { about } = siteConfig;
+---
+
+<section id="about" class="py-20 md:py-28 bg-[var(--color-surface-light)]">
+  <div class="max-w-5xl mx-auto px-6">
+    <!-- Section label -->
+    <p class="reveal text-sm tracking-widest uppercase text-[var(--color-primary)] mb-4">
+      About
+    </p>
+
+    <div class="grid md:grid-cols-5 gap-10 md:gap-16 items-start">
+      <!-- Left: Quote -->
+      <div class="reveal md:col-span-2">
+        <blockquote class="relative">
+          <div class="absolute -top-4 -left-2 text-5xl text-[var(--color-primary-light)]/40 font-accent select-none">"</div>
+          <p class="font-accent text-xl sm:text-2xl text-[var(--color-primary-dark)] leading-relaxed pl-6">
+            {about.quote}
+          </p>
+        </blockquote>
+
+        <!-- Credentials -->
+        <div class="mt-10 space-y-4">
+          {about.credentials.map((cred) => (
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 rounded-full bg-[var(--color-accent)] shrink-0"></div>
+              <div>
+                <span class="text-sm font-semibold text-[var(--color-primary-dark)]">{cred.label}</span>
+                <span class="text-sm text-[var(--color-primary)]"> — {cred.detail}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: Story -->
+      <div class="reveal stagger-2 md:col-span-3">
+        <div class="space-y-5">
+          {about.story.map((paragraph) => (
+            <p class="text-base sm:text-lg text-[var(--color-primary-dark)]/80 leading-relaxed">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

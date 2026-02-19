@@ -1,0 +1,78 @@
+---
+import { siteConfig } from "../config";
+const { workshops, workshopNote } = siteConfig;
+---
+
+<section id="workshops" class="py-20 md:py-28 bg-[var(--color-surface)]">
+  <div class="max-w-5xl mx-auto px-6">
+    <!-- Section header -->
+    <div class="reveal text-center mb-16">
+      <p class="text-sm tracking-widest uppercase text-[var(--color-primary)] mb-4">
+        Financial Wellbeing Workshops
+      </p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-[var(--color-primary-dark)] leading-tight">
+        The Path to Financial Confidence
+      </h2>
+    </div>
+
+    <!-- Workshop path — MOBILE: vertical, DESKTOP: horizontal -->
+
+    <!-- MOBILE layout (< md) -->
+    <div class="md:hidden relative">
+      <!-- Vertical connecting line -->
+      <div class="absolute left-6 top-8 bottom-8 w-[2px] bg-[var(--color-primary-light)]/30"></div>
+
+      <div class="space-y-10">
+        {workshops.map((ws) => (
+          <div class="reveal relative flex gap-5">
+            <!-- Dot -->
+            <div class="relative z-10 shrink-0 w-12 h-12 rounded-full bg-[var(--color-accent)] flex items-center justify-center text-[var(--color-surface-light)] font-bold text-lg shadow-md">
+              {ws.step}
+            </div>
+            <!-- Content -->
+            <div class="pt-1">
+              <p class="text-xs tracking-wider uppercase text-[var(--color-accent)] font-semibold mb-1">{ws.subtitle}</p>
+              <h3 class="text-lg font-semibold text-[var(--color-primary-dark)] leading-snug">{ws.title}</h3>
+              <p class="mt-2 text-sm text-[var(--color-primary-dark)]/70 leading-relaxed">{ws.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- DESKTOP layout (>= md) -->
+    <div class="hidden md:block">
+      <!-- Horizontal connecting line -->
+      <div class="relative mx-auto max-w-4xl mb-8">
+        <div class="absolute top-6 left-[calc(16.67%)] right-[calc(16.67%)] h-[2px] bg-[var(--color-primary-light)]/30"></div>
+
+        <!-- Dots row -->
+        <div class="relative flex justify-between px-[calc(16.67%-24px)]">
+          {workshops.map((ws) => (
+            <div class="reveal flex flex-col items-center">
+              <div class="w-12 h-12 rounded-full bg-[var(--color-accent)] flex items-center justify-center text-[var(--color-surface-light)] font-bold text-lg shadow-md z-10">
+                {ws.step}
+              </div>
+              <p class="mt-2 text-xs tracking-wider uppercase text-[var(--color-accent)] font-semibold">{ws.subtitle}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Workshop cards -->
+      <div class="grid grid-cols-3 gap-8 mt-8">
+        {workshops.map((ws, i) => (
+          <div class={`reveal stagger-${i + 1} bg-[var(--color-surface-light)] rounded-2xl p-6 card-hover border border-[var(--color-primary-light)]/15`}>
+            <h3 class="text-xl font-semibold text-[var(--color-primary-dark)] leading-snug">{ws.title}</h3>
+            <p class="mt-3 text-sm text-[var(--color-primary-dark)]/70 leading-relaxed">{ws.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Note -->
+    <p class="reveal mt-12 text-center text-sm text-[var(--color-primary)] max-w-xl mx-auto leading-relaxed italic">
+      {workshopNote}
+    </p>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+---
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import Challenge from "../components/Challenge.astro";
+import AboutMedalid from "../components/AboutMedalid.astro";
+import WorkshopPath from "../components/WorkshopPath.astro";
+import WhyMedalid from "../components/WhyMedalid.astro";
+import Contact from "../components/Contact.astro";
+import { siteConfig } from "../config";
+import "../styles/global.css";
+---
+
+<html lang={siteConfig.lang} style={`--color-primary-dark:${siteConfig.colors.primaryDark};--color-primary:${siteConfig.colors.primary};--color-primary-light:${siteConfig.colors.primaryLight};--color-accent:${siteConfig.colors.accent};--color-surface:${siteConfig.colors.surface};--color-surface-light:${siteConfig.colors.surfaceLight}`}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={siteConfig.description} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={`${siteConfig.name} — ${siteConfig.title}`} />
+    <meta property="og:description" content={siteConfig.description} />
+    <meta property="og:type" content="website" />
+
+    <!-- Fonts: Cormorant Garamond + Work Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Work+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{siteConfig.name} — {siteConfig.title}</title>
+  </head>
+  <body class="bg-[var(--color-surface-light)]">
+    <Nav />
+    <main>
+      <Hero />
+      <Challenge />
+      <AboutMedalid />
+      <WorkshopPath />
+      <WhyMedalid />
+      <Contact />
+    </main>
+
+    <!-- Scroll Reveal Script -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.1 }
+      );
+
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el) => {
+        observer.observe(el);
+      });
+    </script>
+  </body>
+</html>
